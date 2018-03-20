@@ -1,6 +1,5 @@
 # adapter
-wms adapter for dukadi.
-
+wms adapter for dukadi.<br>
 This time, I only provided an interactive way.
 Please Confirm.
 
