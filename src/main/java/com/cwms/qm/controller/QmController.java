@@ -88,14 +88,14 @@ public class QmController
         {
             QmInboundFeekBackDto responseDto = (QmInboundFeekBackDto) DtoXmlUtils.xmlToDto(requestData, QmInboundFeekBackDto.class);
 
-
+            //TODO send message to sap
         }
         //102 confirm
         else if (method.equals("taobao.qimen.deliveryorder.confirm"))
         {
             DeliveryOrderConfirm responseDto = (DeliveryOrderConfirm) DtoXmlUtils.xmlToDto(requestData, DeliveryOrderConfirm.class);
 
-
+            //TODO send message to sap
         }
     }
 
