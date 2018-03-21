@@ -1,5 +1,5 @@
 # adapter
-wms adapter for dukadi.<br>
+wms adapter for Ducati.<br>
 This time, I only provided an interactive way.
 Please Confirm.
 
