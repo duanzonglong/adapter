@@ -1,13 +1,19 @@
 package com.cwms.qm.ws.inter;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 
 @WebService
 public interface IBaseAdapter
 {
     /**
+     *
      * 101 interface
+     *
+     * @param requestType  interface type, 101 now,you can enter other the future.
+     *
      * @param mainOrder Delivery_no,
      *                  Sales order number,
      *                  Ship-to_CodeShip-to_Name EN,
@@ -37,5 +43,5 @@ public interface IBaseAdapter
      * @return success or fail:message
      */
     @WebMethod
-    String business(String mainOrder,String[] details);
+    @WebResult(name = "response")String business(@WebParam(name = "requestType")String requestType,@WebParam(name = "mainOrder")String mainOrder,@WebParam(name = "details")String[] details);
 }
