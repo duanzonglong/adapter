@@ -1,6 +1,7 @@
 package com.cwms.qm.config;
 
 import com.cwms.qm.ws.SapAdapter;
+import com.cwms.qm.ws.interceptor.AuthInterceptor;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class WebServiceConfig
     @Bean
     public Endpoint endpoint() {
         EndpointImpl endpoint = new EndpointImpl(bus,sapAdapter);
+        endpoint.getInInterceptors().add(new AuthInterceptor());
         endpoint.publish("/SapAdapter");//接口发布在 /NetbarServices 目录下
         return endpoint;
     }
