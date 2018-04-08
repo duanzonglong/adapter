@@ -22,8 +22,9 @@ import java.util.Map;
  * Second you can receive sap message.Then send http+xml message to wms.
  * http://localhost:8030/services/SapAdapter?wsdl
  */
-@WebService
+
 @Component
+@WebService
 public class SapAdapter implements IBaseAdapter
 {
     @Value("${qm.appKey}")
@@ -82,6 +83,6 @@ public class SapAdapter implements IBaseAdapter
 
         }
 
-        return "";
+        return "success:success";
     }
 }
