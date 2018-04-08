@@ -54,7 +54,7 @@ public class SapAdapter implements IBaseAdapter
     }
 
     @Override
-    public String business(String message)
+    public String business(String mainOrder,String[] details)
     {
         // Read 101 message,then fill wms object.
         QmStockoutRequestDto qmStockoutRequestDto = new QmStockoutRequestDto();
