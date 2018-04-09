@@ -8,8 +8,17 @@ First modify SapAdapter to receive sap message.Then send message to wms.
 SapAdapter is a webservice,Of course you can use ftp or other.
 
 ``` java
-@WebMethod
-@WebResult(name = "response")String business(@WebParam(name = "request")String request);
+    /**
+     *
+     * 101 interface
+     *
+     * @param header  interface type 101
+     * @param body body
+     *
+     * @return success or fail:message
+     */
+    @WebMethod
+    @WebResult(name = "response")String business(@WebParam(name = "header")String header,@WebParam(name = "body")String body);
 ```
 
 ## I01 java2wsdl

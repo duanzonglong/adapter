@@ -63,19 +63,19 @@ public class SapAdapter implements IBaseAdapter
         String errorMsg = null;
         try
         {
-            QmCommonResponseDto responseDto = sendMessaeg(qmStockoutRequestDto);
-            if ("success".equals(responseDto.getFlag()))
-            {
-                flag = true;
-            }
-            else
-            {
-                errorMsg = responseDto.getMessage();
-            }
+//            QmCommonResponseDto responseDto = sendMessaeg(qmStockoutRequestDto);
+//            if ("success".equals(responseDto.getFlag()))
+//            {
+//                flag = true;
+//            }
+//            else
+//            {
+//                errorMsg = responseDto.getMessage();
+//            }
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+
         }
         // TODO
         if (flag)
