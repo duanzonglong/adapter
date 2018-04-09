@@ -36,7 +36,7 @@ public class SapAdatperTest
             IBaseAdapter cs = (IBaseAdapter) jaxWsProxyFactoryBean.create();
 
             // 调用代理接口的方法调用并返回结果
-            String result = cs.business("101","mainOrder",new String[]{"detail1","detail2","detail3"});
+            String result = cs.business("101",",,,,,,,,,,",new String[]{"detail1","detail2","detail3"});
             System.out.println("返回结果:" + result);
         } catch (Exception e) {
             e.printStackTrace();

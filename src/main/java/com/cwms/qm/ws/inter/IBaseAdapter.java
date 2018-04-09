@@ -16,8 +16,10 @@ public interface IBaseAdapter
      *
      * @param mainOrder Delivery_no,
      *                  Sales order number,
-     *                  Ship-to_CodeShip-to_Name EN,
-     *                  Ship-to_Name ZH,Ship-to_Address EN,
+     *                  Ship-to_Code,
+     *                  Ship-to_Name EN,
+     *                  Ship-to_Name ZH,
+     *                  Ship-to_Address EN,
      *                  Ship-to_Address ZH,
                         Ship-to_Contact EN,
                         Ship-to_Contact ZH,
