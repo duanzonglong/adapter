@@ -46,6 +46,13 @@ SapAdapter is a webservice,Of course you can use ftp or other.
 @WebResult(name = "response")String business(@WebParam(name = "requestType")String requestType,@WebParam(name = "mainOrder")String mainOrder,@WebParam(name = "details")String[] details);
 ```
 
+## I01 java2wsdl
+``` shell
+cd build/classes/java/main
+java2ws -o adapter.wsdl -wsdl com.cwms.qm.ws.inter.IBaseAdapter
+```
+
+
 ## I02 - Goods Shipment
 First modify QmController
 ``` java
