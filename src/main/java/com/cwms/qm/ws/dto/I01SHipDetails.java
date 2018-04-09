@@ -5,15 +5,15 @@ import java.util.List;
 
 public class I01SHipDetails
 {
-    private List<I01ShipDetail> details = new ArrayList<>();
+    private List<I01ShipDetail> detail = new ArrayList<>();
 
-    public List<I01ShipDetail> getDetails()
+    public List<I01ShipDetail> getDetail()
     {
-        return details;
+        return detail;
     }
 
-    public void setDetails(List<I01ShipDetail> details)
+    public void setDetail(List<I01ShipDetail> detail)
     {
-        this.details = details;
+        this.detail = detail;
     }
 }

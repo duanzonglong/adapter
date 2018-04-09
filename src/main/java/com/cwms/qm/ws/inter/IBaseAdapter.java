@@ -12,10 +12,11 @@ public interface IBaseAdapter
      *
      * 101 interface
      *
-     * @param request  request
+     * @param header  interface type 101
+     * @param body body
      *
      * @return success or fail:message
      */
     @WebMethod
-    @WebResult(name = "response")String business(@WebParam(name = "request")String request);
+    @WebResult(name = "response")String business(@WebParam(name = "header")String header,@WebParam(name = "body")String body);
 }

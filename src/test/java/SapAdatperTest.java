@@ -1,7 +1,4 @@
-import com.cwms.qm.ws.dto.I01DTO;
-import com.cwms.qm.ws.dto.I01SHipDetails;
-import com.cwms.qm.ws.dto.I01ShipDetail;
-import com.cwms.qm.ws.dto.I01ShipOrder;
+import com.cwms.qm.ws.dto.*;
 import com.cwms.qm.ws.inter.IBaseAdapter;
 import org.apache.cxf.binding.soap.SoapMessage;
 import org.apache.cxf.headers.Header;
@@ -11,6 +8,7 @@ import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.phase.AbstractPhaseInterceptor;
 import org.apache.cxf.phase.Phase;
 import org.junit.Test;
+import org.junit.runner.Request;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -41,9 +39,7 @@ public class SapAdatperTest
 
             // 创建一个代理接口实现
             IBaseAdapter cs = (IBaseAdapter) jaxWsProxyFactoryBean.create();
-
             I01DTO i01DTO = new I01DTO();
-            i01DTO.setInterType("101");
             I01ShipOrder shipOrder = new I01ShipOrder();
             shipOrder.setDeliveryNumber("123");
             shipOrder.setDeliveryType("123");
@@ -70,6 +66,7 @@ public class SapAdatperTest
             detail1.setStorageLocaiton("123");
             detail1.setVin("12398374234");
             detail1.setDescriptionEN("en");
+            i01SHipDetails.getDetail().add(detail1);
             I01ShipDetail detail2 = new I01ShipDetail();
             detail2.setDeliveryLineNo("00002");
             detail2.setMaterialCode("ST0002");
@@ -80,7 +77,7 @@ public class SapAdatperTest
             detail2.setStorageLocaiton("123");
             detail2.setVin("12398374235");
             detail2.setDescriptionEN("en");
-            i01SHipDetails.getDetails().add(detail2);
+            i01SHipDetails.getDetail().add(detail2);
             i01DTO.setI01SHipDetails(i01SHipDetails);
             JAXBContext jc = JAXBContext.newInstance(I01DTO.class);
             Marshaller ms = jc.createMarshaller();
@@ -90,7 +87,7 @@ public class SapAdatperTest
             System.out.println(xml);
 
             // 调用代理接口的方法调用并返回结果
-            String result = cs.business(xml);
+            String result = cs.business("101",xml);
             System.out.println("返回结果:" + result);
         } catch (Exception e) {
             e.printStackTrace();
