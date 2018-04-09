@@ -1,3 +1,7 @@
+import com.cwms.qm.ws.dto.I01DTO;
+import com.cwms.qm.ws.dto.I01SHipDetails;
+import com.cwms.qm.ws.dto.I01ShipDetail;
+import com.cwms.qm.ws.dto.I01ShipOrder;
 import com.cwms.qm.ws.inter.IBaseAdapter;
 import org.apache.cxf.binding.soap.SoapMessage;
 import org.apache.cxf.headers.Header;
@@ -10,7 +14,10 @@ import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import javax.xml.namespace.QName;
+import java.io.StringWriter;
 import java.util.List;
 
 public class SapAdatperTest
@@ -35,8 +42,55 @@ public class SapAdatperTest
             // 创建一个代理接口实现
             IBaseAdapter cs = (IBaseAdapter) jaxWsProxyFactoryBean.create();
 
+            I01DTO i01DTO = new I01DTO();
+            i01DTO.setInterType("101");
+            I01ShipOrder shipOrder = new I01ShipOrder();
+            shipOrder.setDeliveryNumber("123");
+            shipOrder.setDeliveryType("123");
+            shipOrder.setQuantityToShip(1);
+            shipOrder.setShipmentConditionCode("123");
+            shipOrder.setShipmentConditionEN("123");
+            shipOrder.setShipmentDate("2018/04/09");
+            shipOrder.setShippingPoint("123");
+            shipOrder.setShipToAddressZH("江苏省南京市雨花区软件大道XXX路");
+            shipOrder.setShipToCode("00001");
+            shipOrder.setShipToMobile("18765489087");
+            shipOrder.setShipToPhone("025-89765678");
+            shipOrder.setShipToNameEN("123");
+            shipOrder.setShipToNameZH("123");
+            i01DTO.setI01ShipOrder(shipOrder);
+            I01SHipDetails i01SHipDetails = new I01SHipDetails();
+            I01ShipDetail detail1 = new I01ShipDetail();
+            detail1.setDeliveryLineNo("00001");
+            detail1.setMaterialCode("ST0001");
+            detail1.setQuantity(150);
+            detail1.setMinPackagingQuantity(50);
+            detail1.setSalesOrderNumber("123456789");
+            detail1.setSalesOrderLine("000001");
+            detail1.setStorageLocaiton("123");
+            detail1.setVin("12398374234");
+            detail1.setDescriptionEN("en");
+            I01ShipDetail detail2 = new I01ShipDetail();
+            detail2.setDeliveryLineNo("00002");
+            detail2.setMaterialCode("ST0002");
+            detail2.setQuantity(150);
+            detail2.setMinPackagingQuantity(50);
+            detail2.setSalesOrderNumber("123456789");
+            detail2.setSalesOrderLine("000002");
+            detail2.setStorageLocaiton("123");
+            detail2.setVin("12398374235");
+            detail2.setDescriptionEN("en");
+            i01SHipDetails.getDetails().add(detail2);
+            i01DTO.setI01SHipDetails(i01SHipDetails);
+            JAXBContext jc = JAXBContext.newInstance(I01DTO.class);
+            Marshaller ms = jc.createMarshaller();
+            StringWriter writer = new StringWriter();
+            ms.marshal(i01DTO, writer);
+            String xml = writer.toString();
+            System.out.println(xml);
+
             // 调用代理接口的方法调用并返回结果
-            String result = cs.business("101",",,,,,,,,,,",new String[]{"detail1","detail2","detail3"});
+            String result = cs.business(xml);
             System.out.println("返回结果:" + result);
         } catch (Exception e) {
             e.printStackTrace();

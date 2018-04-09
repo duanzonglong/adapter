@@ -12,38 +12,10 @@ public interface IBaseAdapter
      *
      * 101 interface
      *
-     * @param requestType  interface type, 101 now,you can enter other the future.
+     * @param request  request
      *
-     * @param mainOrder Delivery_no,
-     *                  Sales order number,
-     *                  Ship-to_Code,
-     *                  Ship-to_Name EN,
-     *                  Ship-to_Name ZH,
-     *                  Ship-to_Address EN,
-     *                  Ship-to_Address ZH,
-                        Ship-to_Contact EN,
-                        Ship-to_Contact ZH,
-                        Ship-to_Phone_No,
-                        Ship-to_Mobile_Phone_No,
-                        Shipment_Method_Code,
-                        Shipment_Method EN,
-                        Shipment_Method ZH,
-                        Shipment_Date
-
-     * @param details   Delivery Line N,
-                        Sales Order Line,
-                        Material code,
-                        VIN,
-                        Description EN,
-                        Description ZH,
-                        UoM_Code SAP,
-                        Quantity to ship,
-                        Package_UoM SAP,
-                        NR of pieces per Package,
-                        SAP Storage Location
-
      * @return success or fail:message
      */
     @WebMethod
-    @WebResult(name = "response")String business(@WebParam(name = "requestType")String requestType,@WebParam(name = "mainOrder")String mainOrder,@WebParam(name = "details")String[] details);
+    @WebResult(name = "response")String business(@WebParam(name = "request")String request);
 }
