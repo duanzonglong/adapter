@@ -15,6 +15,9 @@ import org.w3c.dom.Element;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.namespace.QName;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.StringWriter;
 import java.util.List;
 
@@ -79,15 +82,9 @@ public class SapAdatperTest
             detail2.setDescriptionEN("en");
             i01SHipDetails.getDetail().add(detail2);
             i01DTO.setI01SHipDetails(i01SHipDetails);
-            JAXBContext jc = JAXBContext.newInstance(I01DTO.class);
-            Marshaller ms = jc.createMarshaller();
-            StringWriter writer = new StringWriter();
-            ms.marshal(i01DTO, writer);
-            String xml = writer.toString();
-            System.out.println(xml);
 
             // 调用代理接口的方法调用并返回结果
-            String result = cs.business("101",xml);
+            Response result = cs.shipOrder(i01DTO);
             System.out.println("返回结果:" + result);
         } catch (Exception e) {
             e.printStackTrace();
@@ -120,7 +117,30 @@ public class SapAdatperTest
             auth.appendChild(UserName);
             auth.appendChild(UserPass);
 
-            headers.add(0, new Header(new QName("SecurityHeader"),auth));
+            Header header = new Header(new QName("SecurityHeader"),auth);
+
+            System.out.println(doc2String(doc));
+
+            headers.add(0, header);
+
+
+        }
+
+
+    }
+
+    public static String doc2String(Document doc){
+        try {
+            Source source = new DOMSource(doc);
+            StringWriter stringWriter = new StringWriter();
+            Result result = new StreamResult(stringWriter);
+            TransformerFactory factory = TransformerFactory.newInstance();
+            Transformer transformer = factory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.transform(source, result);
+            return stringWriter.getBuffer().toString();
+        } catch (Exception e) {
+            return null;
         }
     }
 

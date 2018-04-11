@@ -5,6 +5,8 @@ import com.cwms.qm.model.stockout.QmStockoutRequestDto;
 import com.cwms.qm.util.DtoXmlUtils;
 import com.cwms.qm.util.QimenSignUtils;
 import com.cwms.qm.util.WebUtils;
+import com.cwms.qm.ws.dto.I01DTO;
+import com.cwms.qm.ws.dto.Response;
 import com.cwms.qm.ws.inter.IBaseAdapter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -55,10 +57,10 @@ public class SapAdapter implements IBaseAdapter
     }
 
     @Override
-    public String business(String header,String body)
+    public Response shipOrder(I01DTO i01DTO)
     {
-        // Read 101 message,then fill wms object.
-        QmStockoutRequestDto qmStockoutRequestDto = new QmStockoutRequestDto();
+        // Read 101 message,then fill wms object
+        Response response = new Response();
         boolean flag = false;
         String errorMsg = null;
         try
@@ -83,6 +85,9 @@ public class SapAdapter implements IBaseAdapter
 
         }
 
-        return "success:success";
+        response.setCode("success");
+        response.setMessage("success");
+
+        return response;
     }
 }
